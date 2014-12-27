@@ -1,5 +1,6 @@
 define(['angularAMD', 'angular', 'angular-route'], function (angularAMD) {
-    var app = angular.module('ads', ['ngRoute'])
+    var app = angular
+        .module('ads', ['ngRoute'])
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', angularAMD.route({
@@ -8,6 +9,7 @@ define(['angularAMD', 'angular', 'angular-route'], function (angularAMD) {
                     controllerUrl: 'controllers/HomeCtrl'
                 }))
                 .otherwise({ redirectTo: '/' });
-    });
+        })
+        .constant('backendUrl', 'http://localhost:1337/api/');
     return angularAMD.bootstrap(app);
 });
