@@ -1,5 +1,21 @@
 <div class="row">
     <section class="col-md-8">
-        <article class="well" ng-repeat="ad in ads">{{ad.text}}</article>
+        <div class="well" ng-repeat="ad in ads">{{ad.text}}</div>
     </section>
+    <aside class="col-md-3">
+        <div class="well">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">All</a></li>
+                <li ng-repeat="category in categories"><a href="#">{{category.name}}</a></li>
+            </ul>
+        </div>
+        <div class="well">
+            <h3>Towns</h3>
+            <ul>
+                <li><a href="#">All</a></li>
+                <li ng-repeat="town in towns"><a href="#">{{town.name}}</a></li>
+            </ul>
+        </div>
+    </aside>
 </div>

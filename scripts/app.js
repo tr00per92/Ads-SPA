@@ -11,5 +11,6 @@ define(['angularAMD', 'angular', 'angular-route'], function (angularAMD) {
                 .otherwise({ redirectTo: '/' });
         })
         .constant('backendUrl', 'http://localhost:1337/api/');
+
     return angularAMD.bootstrap(app);
 });

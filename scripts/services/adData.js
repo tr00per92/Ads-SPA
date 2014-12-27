@@ -1,5 +1,5 @@
 define(['app'], function (app) {
-    app.factory('adsData', function ($http, $q, backendUrl) {
+    app.factory('adData', function ($http, $q, backendUrl) {
         var baseUrl = backendUrl + 'ads';
 
         function getAllAds() {
@@ -16,7 +16,7 @@ define(['app'], function (app) {
         }
 
         return {
-            getAllAds: getAllAds
+            getAll: getAllAds
         };
     });
 });
