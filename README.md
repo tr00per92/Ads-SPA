@@ -1,4 +1,4 @@
-Other Projects
+Ads Practical Project
+=========================
 
-
-Repository holding various mini projects I did in my free time
+Online ads publishing single page application (SPA) with AngularJS.
