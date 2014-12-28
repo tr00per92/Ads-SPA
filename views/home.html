@@ -1,18 +1,51 @@
-<div class="row">
+<header class="row">
+    <h1 class="h2 well well-sm text-center">Ads - Home</h1>
+</header>
+<div class="row well">
+    <aside class="col-md-2">
+        <div class="well">
+            <p>To publish a new ad, please login.</p>
+            <button class="btn btn-primary btn-block">Login</button>
+            <button class="btn btn-primary btn-block">Register</button>
+        </div>
+    </aside>
+
     <section class="col-md-8">
-        <div class="well" ng-repeat="ad in ads">{{ad.text}}</div>
+        <article class="row well" ng-repeat="ad in ads">
+            <div class="col-md-3">
+                <img ng-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
+            </div>
+            <div class="col-md-9">
+                <div class="row well well-sm">
+                    <div>{{ad.text}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 vcenter">Name: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 vcenter">Email: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerEmail}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 vcenter">Phone: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerPhone}}</div>
+                </div>
+            </div>
+        </article>
     </section>
-    <aside class="col-md-3">
+
+    <aside class="col-md-2">
         <div class="well">
             <h3>Categories</h3>
-            <ul>
+            <ul class="list-unstyled">
                 <li><a href="#">All</a></li>
                 <li ng-repeat="category in categories"><a href="#">{{category.name}}</a></li>
             </ul>
         </div>
         <div class="well">
             <h3>Towns</h3>
-            <ul>
+            <ul class="list-unstyled">
                 <li><a href="#">All</a></li>
                 <li ng-repeat="town in towns"><a href="#">{{town.name}}</a></li>
             </ul>
