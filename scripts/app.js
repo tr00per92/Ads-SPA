@@ -1,4 +1,4 @@
-define(['angularAMD', 'angular', 'angular-route'], function (angularAMD) {
+define(['angularAMD'], function (angularAMD) {
     var app = angular
         .module('ads', ['ngRoute'])
         .config(function ($routeProvider) {
