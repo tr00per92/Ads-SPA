@@ -1,4 +1,4 @@
-define(['app', 'services/adData', 'services/otherData'], function (app) {
+define(['app', 'services/adData', 'services/otherData', 'directives/realSrc'], function (app) {
     app.controller('HomeCtrl', function ($scope, adData, otherData) {
         adData.getAll().then(function (data) {
             $scope.ads = data.ads;
