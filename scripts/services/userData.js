@@ -1,8 +1,7 @@
 define(['app'], function (app) {
-    app.factory('user', function ($http, $q, backendUrl) {
-        var currentUser;
+    app.factory('userData', function ($http, $q, $rootScope, backendUrl) {
         if (localStorage['currentUser']) {
-            currentUser = JSON.parse(localStorage['currentUser'])
+            $rootScope.currentUser = JSON.parse(localStorage['currentUser'])
         }
 
         function registerOrLogin(userObj, type) {
@@ -12,10 +11,10 @@ define(['app'], function (app) {
                     getUserProfile(data.access_token).then(function (userData) {
                         userData.username = data.username;
                         userData.accessToken = data.access_token;
-                        currentUser = userData;
+                        $rootScope.currentUser = userData;
                         localStorage['currentUser'] = JSON.stringify(userData);
+                        deferred.resolve(data);
                     });
-                    deferred.resolve(data);
                 })
                 .error(function (data) {
                     console.error(data);
@@ -24,16 +23,11 @@ define(['app'], function (app) {
             return deferred.promise;
         }
 
-        function logout() {
-            currentUser = undefined;
-            delete localStorage['currentUser'];
-        }
-
         function getUserProfile(accessToken) {
             var deferred = $q.defer();
             $http.get(backendUrl + 'user/profile', {
-                    headers: { 'Authorization': 'Bearer ' + accessToken }
-                })
+                headers: { 'Authorization': 'Bearer ' + accessToken }
+            })
                 .success(function (data) {
                     deferred.resolve(data);
                 })
@@ -45,14 +39,12 @@ define(['app'], function (app) {
         }
 
         return {
-            current: currentUser,
             login: function (userObj) {
                 return registerOrLogin(userObj, 'login');
             },
             register: function (userObj) {
                 return registerOrLogin(userObj, 'register');
-            },
-            logout: logout
+            }
         };
     });
 });

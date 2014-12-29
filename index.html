@@ -12,14 +12,24 @@
 <body>
 <div class="container">
     <header class="row">
-        <h1 class="h2 well well-sm text-center" ng-bind="title"></h1>
+        <h1 class="h2 well well-sm text-center" ng-bind="title + (currentUser.username ? ' (' + currentUser.username + ')' : '')"></h1>
     </header>
     <main class="row well">
         <aside class="col-md-2">
-            <div class="well">
+            <div class="well" ng-show="!currentUser">
                 <p>To publish a new ad, please login.</p>
                 <a ng-href="#/login" class="btn btn-primary btn-block">Login</a>
                 <a ng-href="#/register" class="btn btn-primary btn-block">Register</a>
+            </div>
+            <div class="well" ng-show="currentUser">
+                <h3>Navigation</h3>
+                <ul class="list-unstyled">
+                    <li><a ng-href="#/user/home">Home</a></li>
+                    <li><a href>My Ads</a></li>
+                    <li><a href>Publish New Ad</a></li>
+                    <li><a href>Edit Profile</a></li>
+                    <li><a ng-href="#/logout">Logout</a></li>
+                </ul>
             </div>
         </aside>
         <span ng-view></span>
