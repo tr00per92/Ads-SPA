@@ -1,4 +1,4 @@
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD', 'angular', 'angular-route'], function (angularAMD) {
     var app = angular
         .module('ads', ['ngRoute'])
         .constant('backendUrl', 'http://localhost:1337/api/')
@@ -11,17 +11,25 @@ define(['angularAMD'], function (angularAMD) {
                     public: true
                 }))
                 .when('/register', angularAMD.route({
-                    templateUrl: 'views/register.html'
+                    templateUrl: 'views/register.html',
+                    controller: 'RegisterCtrl',
+                    controllerUrl: 'controllers/RegisterCtrl',
+                    public: true
                 }))
                 .when('/login', angularAMD.route({
                     templateUrl: 'views/login.html',
+                    controller: 'LoginCtrl',
+                    controllerUrl: 'controllers/LoginCtrl',
                     public: true
+                }))
+                .when('/user/home', angularAMD.route({
+                    templateUrl: 'views/home.html'
                 }))
                 .otherwise({ redirectTo: '/' });
         })
         .run(function ($rootScope, $location, user) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
-                if (next.$$route && !next.$$route.public && !user.loggedIn) {
+                if (next.$$route && !next.$$route.public && !user.current) {
                     $location.path('/login');
                 }
             })
