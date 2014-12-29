@@ -37,7 +37,7 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
         })
         .run(function ($rootScope, $location, userData) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
-                if (next.$$route && !next.$$route.public && !$rootScope.currentUser) {
+                if (next.$$route && next.$$route.originalPath && !next.$$route.public && !$rootScope.currentUser) {
                     $location.path('/login');
                 }
             })
