@@ -5,5 +5,5 @@ require.config({
         'angular': 'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min',
         'angular-route': 'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.min'
     },
-    deps: ['angular', 'angular-route', 'app', 'controllers/UsersCtrl']
+    deps: ['angular', 'angular-route', 'app', 'services/user']
 });

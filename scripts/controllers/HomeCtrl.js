@@ -1,5 +1,6 @@
 define(['app', 'services/adData', 'services/otherData', 'directives/realSrc'], function (app) {
-    app.controller('HomeCtrl', function ($scope, adData, otherData) {
+    app.controller('HomeCtrl', function ($scope, $rootScope, adData, otherData) {
+        $rootScope.title = 'Ads - Home';
         adData.getAll().then(function (data) {
             $scope.ads = data.ads;
         });

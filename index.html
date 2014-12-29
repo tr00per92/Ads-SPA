@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ads</title>
+    <title>{{title}}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -10,7 +10,21 @@
     <script data-main="scripts/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js"></script>
 </head>
 <body>
-    <main class="container" ng-view></main>
-    <footer class="container well well-sm text-center">&copy; 2015 by Tr00peR</footer>
+<div class="container">
+    <header class="row">
+        <h1 class="h2 well well-sm text-center">{{title}}</h1>
+    </header>
+    <main class="row well">
+        <aside class="col-md-2">
+            <div class="well">
+                <p>To publish a new ad, please login.</p>
+                <a ng-href="#/login" class="btn btn-primary btn-block">Login</a>
+                <a ng-href="#/register" class="btn btn-primary btn-block">Register</a>
+            </div>
+        </aside>
+        <span ng-view></span>
+    </main>
+    <footer class="row well well-sm text-center">&copy; 2015 by Tr00peR</footer>
+</div>
 </body>
 </html>

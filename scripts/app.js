@@ -11,8 +11,7 @@ define(['angularAMD'], function (angularAMD) {
                     public: true
                 }))
                 .when('/register', angularAMD.route({
-                    templateUrl: 'views/register.html',
-                    public: true
+                    templateUrl: 'views/register.html'
                 }))
                 .when('/login', angularAMD.route({
                     templateUrl: 'views/login.html',
@@ -20,9 +19,9 @@ define(['angularAMD'], function (angularAMD) {
                 }))
                 .otherwise({ redirectTo: '/' });
         })
-        .run(function ($rootScope, $location) {
+        .run(function ($rootScope, $location, user) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
-                if (next.$$route && !next.$$route.public) {
+                if (next.$$route && !next.$$route.public && !user.loggedIn) {
                     $location.path('/login');
                 }
             })
