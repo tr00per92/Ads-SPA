@@ -1,0 +1,52 @@
+<form class="col-md-4 col-md-offset-1 well" id="edit-profile-form">
+    <h3 class="text-center">Edit Profile</h3>
+    <div class="form-group">
+        <label for="name">Name: </label>
+        <input type="text" class="form-control" id="name" placeholder="Name" ng-model="user.name">
+    </div>
+    <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone: </label>
+        <input type="tel" class="form-control" id="phone" placeholder="Phone" ng-model="user.phoneNumber">
+    </div>
+    <div class="form-group">
+        <label for="town">Town: </label>
+        <select class="form-control" id="town" ng-model="user.townId" ng-options="town.id as town.name for town in towns">
+            <option selected value>--- Select Town ---</option>
+        </select>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-block" ng-click="updateUser()">Update</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-block" ng-click="resetUserData()">Reset</button>
+        </div>
+    </div>
+</form>
+<form class="col-md-4 well">
+    <h3 class="text-center">Change Password</h3>
+    <div class="form-group">
+        <label for="pass-old">Old password: </label>
+        <input type="password" class="form-control" id="pass-old" placeholder="Old password" ng-model="password.oldPassword">
+    </div>
+    <div class="form-group">
+        <label for="pass-new">New password: </label>
+        <input type="password" class="form-control" id="pass-new" placeholder="New password" ng-model="password.newPassword">
+    </div>
+    <div class="form-group">
+        <label for="pass-new2">Confirm new password: </label>
+        <input type="password" class="form-control" id="pass-new2" placeholder="Confirm new password" ng-model="password.confirmPassword">
+    </div>
+    <div class="form-group row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-block" ng-click="changePassword()">Change Password</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-block" ng-click="password = undefined">Clear</button>
+        </div>
+    </div>
+</form>

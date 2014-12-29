@@ -1,4 +1,4 @@
-define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
+define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
     var app = angular
         .module('ads', ['ngRoute', 'ui.bootstrap'])
         .constant('backendUrl', 'http://localhost:1337/api/')
@@ -28,10 +28,10 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                     controllerUrl: 'controllers/LogoutCtrl',
                     public: true
                 }))
-                .when('/user/home', angularAMD.route({
-                    templateUrl: 'views/home.html',
-                    controller: 'HomeCtrl',
-                    controllerUrl: 'controllers/HomeCtrl'
+                .when('/user/profile', angularAMD.route({
+                    templateUrl: 'views/user-profile.html',
+                    controller: 'UserProfileCtrl',
+                    controllerUrl: 'controllers/UserProfileCtrl'
                 }))
                 .otherwise({ redirectTo: '/' });
         })
