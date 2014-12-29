@@ -1,3 +1,8 @@
 .v-center {
     line-height: 280%;
 }
+
+.selectedItem {
+    color: #97310e;
+    text-decoration: underline;
+}
