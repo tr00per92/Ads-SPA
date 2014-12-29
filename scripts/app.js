@@ -1,6 +1,6 @@
-define(['angularAMD', 'angular', 'angular-route'], function (angularAMD) {
+define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
     var app = angular
-        .module('ads', ['ngRoute'])
+        .module('ads', ['ngRoute', 'ui.bootstrap'])
         .constant('backendUrl', 'http://localhost:1337/api/')
         .config(function ($routeProvider) {
             $routeProvider
