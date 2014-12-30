@@ -12,8 +12,14 @@ define(['app', 'services/adData', 'directives/realSrc'], function (app) {
         };
         $scope.loadAds();
 
+        $scope.deactivateAd = function (ad) {
+            adData.deactivateAd(ad.id).then(function () {
+                ad.status = 'Inactive';
+            });
+        };
+
         $scope.adIsInactive = function (ad) {
             return ad.status == 'Inactive' || ad.status == 'Rejected';
-        }
+        };
     });
 });
