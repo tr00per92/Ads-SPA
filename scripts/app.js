@@ -33,6 +33,11 @@ define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (ang
                     controller: 'UserProfileCtrl',
                     controllerUrl: 'controllers/UserProfileCtrl'
                 }))
+                .when('/user/ads/publish', angularAMD.route({
+                    templateUrl: 'views/new-ad.html',
+                    controller: 'NewAdCtrl',
+                    controllerUrl: 'controllers/NewAdCtrl'
+                }))
                 .otherwise({ redirectTo: '/' });
         })
         .run(function ($rootScope, $location, userData) {

@@ -10,3 +10,12 @@
 #edit-profile-form {
     margin-right: 1%;
 }
+
+#new-ad-text {
+    resize: none;
+    height: 120px;
+}
+
+#img-selector {
+    display: none;
+}

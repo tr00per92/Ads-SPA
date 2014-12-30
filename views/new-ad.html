@@ -1,0 +1,58 @@
+<form class="col-md-6 col-md-offset-2 well">
+    <h3 class="text-center">Publish New Ad</h3>
+    <div class="form-group row">
+        <div class="col-md-8">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="title" class="v-center">Title: </label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="title" placeholder="Title" ng-model="newAd.title">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="new-ad-text" class="v-center">Text: </label>
+                </div>
+                <div class="col-md-9">
+                    <textarea class="form-control" id="new-ad-text" placeholder="Text" ng-model="newAd.text"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="category" class="v-center">Category: </label>
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control" id="category" ng-model="newAd.categoryId" ng-options="category.id as category.name for category in categories">
+                        <option selected value>--- Select Category ---</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label for="town" class="v-center">Town: </label>
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control" id="town" ng-model="newAd.townId" ng-options="town.id as town.name for town in towns">
+                        <option selected value>--- Select Town ---</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5 col-md-offset-3">
+                    <button type="button" class="btn btn-primary btn-block" ng-click="publishAd()">Publish</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default btn-block" ng-click="newAd = undefined">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <img ng-src="img/default-image.jpg" real-src="{{newAd.imageDataUrl}}" alt="no image" class="form-group img-responsive img-rounded"/>
+            <label class="btn btn-primary btn-block" for="img-selector">
+                <input type="file" id="img-selector" class="form-control" file-select="onFileSelect($files)" ng-model="newAd.imageDataUrl">
+                Browse
+            </label>
+        </div>
+    </div>
+</form>
