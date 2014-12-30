@@ -1,6 +1,7 @@
 define(['app'], function (app) {
     app.directive('realSrc', function () {
         return {
+            restrict: 'A',
             link: function (scope, element, attributes) {
                 attributes.$observe('realSrc', function (newValue) {
                     if (newValue !== undefined) {
