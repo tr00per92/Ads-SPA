@@ -14,6 +14,11 @@ define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'd
             adData.publishAd($scope.newAd).then(function () {
                 $scope.newAd = undefined;
             });
-        }
+        };
+
+        $scope.clearForm = function () {
+            $scope.newAd = undefined;
+            document.getElementById('new-ad-form').reset();
+        };
     });
 });

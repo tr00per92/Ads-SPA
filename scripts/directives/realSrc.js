@@ -4,7 +4,9 @@ define(['app'], function (app) {
             restrict: 'A',
             link: function (scope, element, attributes) {
                 attributes.$observe('realSrc', function (newValue) {
-                    if (newValue !== undefined) {
+                    if (newValue === '') {
+                        element.attr('src', 'img/default-image.jpg');
+                    } else if (newValue !== undefined) {
                         var img = new Image();
                         img.src = attributes.realSrc;
                         angular.element(img).bind('load', function () {
@@ -13,6 +15,6 @@ define(['app'], function (app) {
                     }
                 });
             }
-        }
+        };
     });
 });

@@ -23,6 +23,6 @@ define(['app', 'services/otherData'], function (app) {
             userData.updateUser($scope.user).finally(function () {
                 $scope.resetUserData();
             });
-        }
+        };
     });
 });
