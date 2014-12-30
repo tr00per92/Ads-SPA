@@ -33,6 +33,11 @@ define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (ang
                     controller: 'UserProfileCtrl',
                     controllerUrl: 'controllers/UserProfileCtrl'
                 }))
+                .when('/user/ads', angularAMD.route({
+                    templateUrl: 'views/user-ads.html',
+                    controller: 'UserAdsCtrl',
+                    controllerUrl: 'controllers/UserAdsCtrl'
+                }))
                 .when('/user/ads/publish', angularAMD.route({
                     templateUrl: 'views/new-ad.html',
                     controller: 'NewAdCtrl',

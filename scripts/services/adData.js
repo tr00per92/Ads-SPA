@@ -13,6 +13,22 @@ define(['app'], function (app) {
             return deferred.promise;
         }
 
+        function getUserAds(startPage, statusId) {
+            var deferred = $q.defer();
+            $http.get(backendUrl + 'user/ads?pagesize=4&startpage=' + startPage + '&status=' + statusId, {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.error(data);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
         function publishAd(adObj) {
             var deferred = $q.defer();
             $http.post(backendUrl + 'user/ads', JSON.stringify(adObj), {
@@ -31,6 +47,7 @@ define(['app'], function (app) {
 
         return {
             getAds: getAds,
+            getUserAds: getUserAds,
             publishAd: publishAd
         };
     });
