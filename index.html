@@ -15,23 +15,7 @@
         <h1 class="h2 well well-sm text-center" ng-bind="title + (currentUser.username ? ' (' + currentUser.username + ')' : '')"></h1>
     </header>
     <main class="row well">
-        <aside class="col-md-2">
-            <div class="well" ng-show="!currentUser">
-                <p>To publish a new ad, please login.</p>
-                <a ng-href="#/login" class="btn btn-primary btn-block">Login</a>
-                <a ng-href="#/register" class="btn btn-primary btn-block">Register</a>
-            </div>
-            <div class="well" ng-show="currentUser">
-                <h3>Navigation</h3>
-                <ul class="list-unstyled">
-                    <li><a ng-href="#/">Home</a></li>
-                    <li><a ng-href="#/user/ads">My Ads</a></li>
-                    <li><a ng-href="#/user/ads/publish">Publish New Ad</a></li>
-                    <li><a ng-href="#/user/profile">Edit Profile</a></li>
-                    <li><a ng-href="#/logout">Logout</a></li>
-                </ul>
-            </div>
-        </aside>
+        <aside class="col-md-2" ads-sidebar></aside>
         <span ng-view></span>
     </main>
     <footer class="row well well-sm text-center">&copy; 2015 by Tr00peR</footer>
