@@ -39,9 +39,14 @@ define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (ang
                     controllerUrl: 'controllers/UserAdsCtrl'
                 }))
                 .when('/user/ads/publish', angularAMD.route({
-                    templateUrl: 'views/new-ad.html',
+                    templateUrl: 'views/ad-form.html',
                     controller: 'NewAdCtrl',
                     controllerUrl: 'controllers/NewAdCtrl'
+                }))
+                .when('/user/ads/edit/:id', angularAMD.route({
+                    templateUrl: 'views/ad-form.html',
+                    controller: 'EditAdCtrl',
+                    controllerUrl: 'controllers/EditAdCtrl'
                 }))
                 .otherwise({ redirectTo: '/' });
         })

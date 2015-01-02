@@ -31,6 +31,22 @@ define(['app'], function (app) {
             return deferred.promise;
         }
 
+        function getAdById(adId) {
+            var deferred = $q.defer();
+            $http.get(baseUrl + '/' + adId, {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.error(data);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
         function publishAd(adObj) {
             var deferred = $q.defer();
             $http.post(baseUrl, JSON.stringify(adObj), {
@@ -65,7 +81,7 @@ define(['app'], function (app) {
 
         function editAd(adId, action, adObj) {
             var deferred = $q.defer();
-            $http.put(baseUrl + action + adId, adObj, {
+            $http.put(baseUrl + '/' + action + adId, adObj, {
                 headers: {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
@@ -82,16 +98,17 @@ define(['app'], function (app) {
         return {
             getAds: getAds,
             getUserAds: getUserAds,
+            getAdById: getAdById,
             publishAd: publishAd,
             deleteAd: deleteAd,
             editAd: function (adId, adObj) {
                 return editAd(adId, '', adObj)
             },
             deactivateAd: function (adId) {
-                return editAd(adId, '/deactivate/');
+                return editAd(adId, 'deactivate/');
             },
             publishAgainAd: function (adId) {
-                return editAd(adId, '/publishagain/');
+                return editAd(adId, 'publishagain/');
             }
         };
     });
