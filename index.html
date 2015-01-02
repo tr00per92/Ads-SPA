@@ -16,6 +16,9 @@
     </header>
     <main class="row well">
         <aside class="col-md-2" ads-sidebar></aside>
+        <div class="col-md-10 text-center">
+            <div alert ng-repeat="alert in alerts" dismiss-on-timeout="4000" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</div>
+        </div>
         <span ng-view></span>
     </main>
     <footer class="row well well-sm text-center">&copy; 2015 by Tr00peR</footer>

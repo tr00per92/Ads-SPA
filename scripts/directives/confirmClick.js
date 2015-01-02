@@ -1,6 +1,6 @@
 define(['app'], function (app) {
     app.directive('confirmClick', function ($modal) {
-        var ModalInstance = function ($scope, $modalInstance) {
+        var ModalInstanceCtrl = function ($scope, $modalInstance) {
             $scope.ok = function() {
                 $modalInstance.close();
             };
@@ -18,7 +18,7 @@ define(['app'], function (app) {
                             '<button class="btn btn-default" ng-click="cancel()">Cancel</button></div>',
                         modalInstance = $modal.open({
                             template: modalHtml,
-                            controller: ModalInstance
+                            controller: ModalInstanceCtrl
                         });
 
                     modalInstance.result.then(function () {
