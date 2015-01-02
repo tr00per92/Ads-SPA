@@ -24,9 +24,9 @@ define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (ang
                 }))
                 .when('/logout', angularAMD.route({
                     template: '',
-                    controller: 'LogoutCtrl',
-                    controllerUrl: 'controllers/LogoutCtrl',
-                    public: true
+                    controller: function (userData) {
+                        userData.logout();
+                    }
                 }))
                 .when('/user/profile', angularAMD.route({
                     templateUrl: 'views/user-profile.html',

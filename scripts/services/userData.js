@@ -1,8 +1,8 @@
 define(['app', 'services/alerts'], function (app) {
-    app.factory('userData', function ($http, $q, $rootScope, backendUrl, alerts) {
+    app.factory('userData', function ($http, $q, $rootScope, $location, backendUrl, alerts) {
         var baseUrl = backendUrl + 'user/';
-        if (localStorage['currentUser']) {
-            $rootScope.currentUser = JSON.parse(localStorage['currentUser'])
+        if (sessionStorage['currentUser']) {
+            $rootScope.currentUser = JSON.parse(sessionStorage['currentUser'])
         }
 
         function getUserProfile(accessToken) {
@@ -29,7 +29,7 @@ define(['app', 'services/alerts'], function (app) {
                         userData.username = data.username;
                         userData.accessToken = data.access_token;
                         $rootScope.currentUser = userData;
-                        localStorage['currentUser'] = JSON.stringify(userData);
+                        sessionStorage['currentUser'] = JSON.stringify(userData);
                         alerts.add('success', type == 'login' ? 'Login successful.' : 'Registration successful.');
                         deferred.resolve(data);
                     });
@@ -69,7 +69,7 @@ define(['app', 'services/alerts'], function (app) {
                     $rootScope.currentUser.email = userObj.email;
                     $rootScope.currentUser.phoneNumber = userObj.phoneNumber;
                     $rootScope.currentUser.townId = userObj.townId;
-                    localStorage['currentUser'] = JSON.stringify($rootScope.currentUser);
+                    sessionStorage['currentUser'] = JSON.stringify($rootScope.currentUser);
                     alerts.add('success', 'User profile updated successfully.');
                     deferred.resolve(data);
                 })
@@ -87,6 +87,9 @@ define(['app', 'services/alerts'], function (app) {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
                 .success(function (data) {
+                    $rootScope.currentUser = undefined;
+                    delete sessionStorage['currentUser'];
+                    $location.path('/');
                     alerts.add('success', 'Logged out successfully.');
                     deferred.resolve(data);
                 })
