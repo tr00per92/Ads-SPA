@@ -6,10 +6,9 @@ define(['app', 'services/adData', 'services/otherData', 'directives/realSrc'], f
         $scope.selectedPage = 1;
 
         $scope.loadAds = function () {
-            adData.getAds($scope.selectedPage, $scope.selectedTown, $scope.selectedCategory)
-                .then(function (data) {
-                    $scope.totalAds = data.numItems;
-                    $scope.ads = data.ads;
+            adData.getAds($scope.selectedPage, $scope.selectedTown, $scope.selectedCategory).then(function (data) {
+                $scope.totalAds = data.numItems;
+                $scope.ads = data.ads;
             });
         };
         $scope.loadAds();

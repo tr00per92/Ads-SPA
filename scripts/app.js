@@ -23,7 +23,7 @@ define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (ang
                     public: true
                 }))
                 .when('/logout', angularAMD.route({
-                    templateUrl: 'views/home.html',
+                    template: '',
                     controller: 'LogoutCtrl',
                     controllerUrl: 'controllers/LogoutCtrl',
                     public: true
@@ -53,9 +53,9 @@ define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (ang
         .run(function ($rootScope, $location, userData) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
                 if (next.$$route && next.$$route.originalPath && !next.$$route.public && !$rootScope.currentUser) {
-                    $location.path('/login');
+                    $location.path('/');
                 }
-            })
+            });
         });
 
     return angularAMD.bootstrap(app);

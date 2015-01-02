@@ -1,5 +1,5 @@
 define(['app', 'services/adData', 'directives/realSrc', 'directives/confirmClick'], function (app) {
-    app.controller('UserAdsCtrl', function ($scope, $rootScope, adData, alerts) {
+    app.controller('UserAdsCtrl', function ($scope, $rootScope, adData) {
         $rootScope.title = 'Ads - My Ads';
         $scope.selectedStatus = '';
         $scope.selectedPage = 1;
@@ -22,21 +22,18 @@ define(['app', 'services/adData', 'directives/realSrc', 'directives/confirmClick
         $scope.deactivateAd = function (ad) {
             adData.deactivateAd(ad.id).then(function () {
                 ad.status = 'Inactive';
-                alerts.add('success', 'Ad deactivated successfully!');
             });
         };
 
         $scope.publishAgainAd = function (ad) {
             adData.publishAgainAd(ad.id).then(function () {
                 ad.status = 'WaitingApproval';
-                alerts.add('success', 'Ad submitted for approval!');
             });
         };
 
         $scope.deleteAd = function (ad) {
             adData.deleteAd(ad.id).then(function () {
                 $scope.loadAds();
-                alerts.add('success', 'Ad deleted successfully!');
             });
         };
 

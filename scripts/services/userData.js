@@ -1,5 +1,5 @@
-define(['app'], function (app) {
-    app.factory('userData', function ($http, $q, $rootScope, backendUrl) {
+define(['app', 'services/alerts'], function (app) {
+    app.factory('userData', function ($http, $q, $rootScope, backendUrl, alerts) {
         var baseUrl = backendUrl + 'user/';
         if (localStorage['currentUser']) {
             $rootScope.currentUser = JSON.parse(localStorage['currentUser'])
@@ -30,11 +30,12 @@ define(['app'], function (app) {
                         userData.accessToken = data.access_token;
                         $rootScope.currentUser = userData;
                         localStorage['currentUser'] = JSON.stringify(userData);
+                        alerts.add('success', type == 'login' ? 'Login successful.' : 'Registration successful.');
                         deferred.resolve(data);
                     });
                 })
                 .error(function (data) {
-                    console.error(data);
+                    alerts.add('danger', data.error_description || data.modelState[Object.keys(data.modelState)[0]][0]);
                     deferred.reject(data);
                 });
             return deferred.promise;
@@ -47,10 +48,11 @@ define(['app'], function (app) {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
                 .success(function (data) {
+                    alerts.add('success', 'Password changed successfully.');
                     deferred.resolve(data);
                 })
                 .error(function (data) {
-                    console.error(data);
+                    alerts.add('danger', data.modelState[Object.keys(data.modelState)[0]][0]);
                     deferred.reject(data);
                 });
             return deferred.promise;
@@ -68,10 +70,11 @@ define(['app'], function (app) {
                     $rootScope.currentUser.phoneNumber = userObj.phoneNumber;
                     $rootScope.currentUser.townId = userObj.townId;
                     localStorage['currentUser'] = JSON.stringify($rootScope.currentUser);
+                    alerts.add('success', 'User profile updated successfully.');
                     deferred.resolve(data);
                 })
                 .error(function (data) {
-                    console.error(data);
+                    alerts.add('danger', data.modelState[Object.keys(data.modelState)[0]][0]);
                     deferred.reject(data);
                 });
             return deferred.promise;
@@ -84,6 +87,7 @@ define(['app'], function (app) {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
                 .success(function (data) {
+                    alerts.add('success', 'Logged out successfully.');
                     deferred.resolve(data);
                 })
                 .error(function (data) {

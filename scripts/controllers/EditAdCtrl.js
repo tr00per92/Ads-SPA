@@ -1,5 +1,5 @@
 define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'directives/fileSelect'], function (app) {
-    app.controller('EditAdCtrl', function ($scope, $rootScope, $routeParams, adData, otherData) {
+    app.controller('EditAdCtrl', function ($scope, $rootScope, $routeParams, $location, adData, otherData) {
         $rootScope.title = 'Ads - Edit Ad';
         $scope.editAd = true;
         var currentAdBackup;
@@ -17,11 +17,6 @@ define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'd
             $scope.towns = data;
         });
 
-        $scope.editAd = function () {
-            adData.editAd($scope.currentAd.id, $scope.currentAd).then(function () {
-            });
-        };
-
         $scope.resetForm = function () {
             $scope.currentAd = angular.copy(currentAdBackup);
         };
@@ -30,6 +25,18 @@ define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'd
             $scope.currentAd.imageDataUrl = undefined;
             var input = document.getElementById('img-selector');
             input.value = input.defaultValue;
-        }
+        };
+
+        $scope.editAd = function () {
+            if ($scope.currentAd.imageDataUrl == currentAdBackup.imageDataUrl) {
+                $scope.removeImage();
+            } else {
+                $scope.currentAd.changeImage = true;
+            }
+
+            adData.editAd($scope.currentAd.id, $scope.currentAd).then(function () {
+                $location.path('/user/ads');
+            });
+        };
     });
 });

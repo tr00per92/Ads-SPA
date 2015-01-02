@@ -1,5 +1,5 @@
 define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'directives/fileSelect'], function (app) {
-    app.controller('NewAdCtrl', function ($scope, $rootScope, adData, otherData) {
+    app.controller('NewAdCtrl', function ($scope, $rootScope, $location, adData, otherData) {
         $rootScope.title = 'Ads - Publish New Ad';
 
         otherData.getCategories().then(function (data) {
@@ -12,7 +12,7 @@ define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'd
 
         $scope.publishAd = function () {
             adData.publishAd($scope.currentAd).then(function () {
-                $scope.currentAd = undefined;
+                $location.path('/user/ads');
             });
         };
 

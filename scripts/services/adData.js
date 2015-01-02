@@ -1,5 +1,5 @@
-define(['app'], function (app) {
-    app.factory('adData', function ($rootScope, $http, $q, backendUrl) {
+define(['app', 'services/alerts'], function (app) {
+    app.factory('adData', function ($rootScope, $http, $q, backendUrl, alerts) {
         var baseUrl = backendUrl + 'user/ads';
 
         function getAds(startPage, townId, categoryId) {
@@ -54,10 +54,11 @@ define(['app'], function (app) {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
                 .success(function (data) {
+                    alerts.add('success', 'Advertisement submitted for approval. Once approved, it will be published.');
                     deferred.resolve(data);
                 })
                 .error(function (data) {
-                    console.error(data);
+                    alerts.add('danger', data.modelState[Object.keys(data.modelState)[0]][0]);
                     deferred.reject(data);
                 });
             return deferred.promise;
@@ -70,10 +71,11 @@ define(['app'], function (app) {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
                 .success(function (data) {
+                    alerts.add('success', 'Ad deleted successfully.');
                     deferred.resolve(data);
                 })
                 .error(function (data) {
-                    console.error(data);
+                    alerts.add('danger', data.message);
                     deferred.reject(data);
                 });
             return deferred.promise;
@@ -86,10 +88,17 @@ define(['app'], function (app) {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
                 .success(function (data) {
+                    var successMsg;
+                    switch (action) {
+                        case 'deactivate/': successMsg = 'Ad deactivated successfully.'; break;
+                        case 'publishagain/': successMsg = 'Ad submitted for approval.'; break;
+                        default: successMsg = 'Advertisement edited. Don\'t forget to submit it for publishing.'; break;
+                    }
+                    alerts.add('success', successMsg);
                     deferred.resolve(data);
                 })
                 .error(function (data) {
-                    console.error(data);
+                    alerts.add('danger', data.message || data.modelState[Object.keys(data.modelState)[0]][0]);
                     deferred.reject(data);
                 });
             return deferred.promise;

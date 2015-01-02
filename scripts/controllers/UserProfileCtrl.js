@@ -1,4 +1,4 @@
-define(['app', 'services/otherData'], function (app) {
+define(['app', 'services/otherData', 'directives/confirmClick'], function (app) {
     app.controller('UserProfileCtrl', function ($scope, $rootScope, userData, otherData) {
         $rootScope.title = 'Ads - Edit User Profile';
 
