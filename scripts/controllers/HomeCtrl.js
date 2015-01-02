@@ -1,6 +1,5 @@
 define(['app', 'services/adData', 'services/otherData', 'directives/realSrc'], function (app) {
-    app.controller('HomeCtrl', function ($scope, $rootScope, adData, otherData) {
-        $rootScope.title = 'Ads - Home';
+    app.controller('HomeCtrl', function ($scope, adData, otherData) {
         $scope.selectedTown = '';
         $scope.selectedCategory = '';
         $scope.selectedPage = 1;

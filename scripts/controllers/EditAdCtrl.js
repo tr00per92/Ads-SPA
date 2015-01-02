@@ -1,8 +1,7 @@
 define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'directives/fileSelect'], function (app) {
-    app.controller('EditAdCtrl', function ($scope, $rootScope, $routeParams, $location, adData, otherData) {
-        $rootScope.title = 'Ads - Edit Ad';
-        $scope.editAd = true;
+    app.controller('EditAdCtrl', function ($scope, $routeParams, $location, adData, otherData) {
         var currentAdBackup;
+        $scope.editAd = true;
 
         adData.getAdById($routeParams.id).then(function (data) {
             $scope.currentAd = data;

@@ -1,7 +1,5 @@
 define(['app', 'services/otherData', 'directives/confirmClick'], function (app) {
     app.controller('UserProfileCtrl', function ($scope, $rootScope, userData, otherData) {
-        $rootScope.title = 'Ads - Edit User Profile';
-
         otherData.getTowns().then(function (data) {
             $scope.towns = data;
         });

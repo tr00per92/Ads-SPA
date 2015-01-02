@@ -1,6 +1,5 @@
 define(['app', 'services/adData', 'directives/realSrc', 'directives/confirmClick'], function (app) {
-    app.controller('UserAdsCtrl', function ($scope, $rootScope, adData) {
-        $rootScope.title = 'Ads - My Ads';
+    app.controller('UserAdsCtrl', function ($scope, adData) {
         $scope.selectedStatus = '';
         $scope.selectedPage = 1;
 
