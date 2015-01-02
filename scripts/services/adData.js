@@ -47,9 +47,25 @@ define(['app'], function (app) {
             return deferred.promise;
         }
 
-        function deactivateAd(adId) {
+        function deleteAd(adId) {
             var deferred = $q.defer();
-            $http.put(baseUrl + '/deactivate/' + adId, undefined, {
+            $http.delete(baseUrl + '/' + adId, {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.error(data);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
+        function editAd(adId, action, adObj) {
+            var deferred = $q.defer();
+            $http.put(baseUrl + action + adId, adObj, {
                 headers: {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
@@ -67,7 +83,16 @@ define(['app'], function (app) {
             getAds: getAds,
             getUserAds: getUserAds,
             publishAd: publishAd,
-            deactivateAd: deactivateAd
+            deleteAd: deleteAd,
+            editAd: function (adId, adObj) {
+                return editAd(adId, '', adObj)
+            },
+            deactivateAd: function (adId) {
+                return editAd(adId, '/deactivate/');
+            },
+            publishAgainAd: function (adId) {
+                return editAd(adId, '/publishagain/');
+            }
         };
     });
 });

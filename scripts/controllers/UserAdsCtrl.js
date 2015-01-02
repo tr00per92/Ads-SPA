@@ -25,6 +25,18 @@ define(['app', 'services/adData', 'directives/realSrc'], function (app) {
             });
         };
 
+        $scope.publishAgainAd = function (ad) {
+            adData.publishAgainAd(ad.id).then(function () {
+                ad.status = 'WaitingApproval';
+            });
+        };
+
+        $scope.deleteAd = function (ad) {
+            adData.deleteAd(ad.id).then(function () {
+                $scope.loadAds();
+            });
+        };
+
         $scope.adIsInactive = function (ad) {
             return ad.status == 'Inactive' || ad.status == 'Rejected';
         };

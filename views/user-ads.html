@@ -44,12 +44,12 @@
                 </div>
                 <div class="row" ng-if="adIsInactive(ad)">
                     <div class="col-md-11 col-md-offset-1 form-group">
-                        <button class="btn btn-primary btn-block">Publish Again</button>
+                        <button class="btn btn-primary btn-block" ng-click="publishAgainAd(ad)">Publish Again</button>
                     </div>
                 </div>
                 <div class="row" ng-if="adIsInactive(ad)">
                     <div class="col-md-11 col-md-offset-1">
-                        <button class="btn btn-primary btn-block">Delete</button>
+                        <button class="btn btn-primary btn-block" ng-click="deleteAd(ad)">Delete</button>
                     </div>
                 </div>
             </div>
