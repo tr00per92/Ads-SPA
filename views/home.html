@@ -1,23 +1,33 @@
 <section class="col-md-8">
     <article class="row well" ng-repeat="ad in ads">
-        <div class="col-md-3">
-            <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
+        <div class="row">
+            <div class="col-md-9">
+                <h3 class="ad-title">{{ad.title}}</h3>
+            </div>
+            <div class="col-md-3">
+                <p class="text-right">{{ad.date | date:'dd-MMM-yyyy'}}</p>
+            </div>
         </div>
-        <div class="col-md-9">
-            <div class="row well well-sm">
-                <div>{{ad.text}}</div>
+        <div class="row">
+            <div class="col-md-3">
+                <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
             </div>
-            <div class="row">
-                <div class="col-md-2 v-center">Name: </div>
-                <div class="col-md-10 well well-sm">{{ad.ownerName}}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 v-center">Email: </div>
-                <div class="col-md-10 well well-sm">{{ad.ownerEmail}}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 v-center">Phone: </div>
-                <div class="col-md-10 well well-sm">{{ad.ownerPhone}}</div>
+            <div class="col-md-9">
+                <div class="row well well-sm">
+                    <div class="ad-text">{{ad.text}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 v-center">Name: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 v-center">Email: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerEmail}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 v-center">Phone: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerPhone}}</div>
+                </div>
             </div>
         </div>
     </article>

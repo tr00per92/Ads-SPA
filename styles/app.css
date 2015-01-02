@@ -19,3 +19,11 @@
 #img-selector {
     display: none;
 }
+
+.ad-title {
+    margin-top: 0;
+}
+
+.ad-text {
+    word-wrap: break-word;
+}

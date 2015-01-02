@@ -1,44 +1,56 @@
-<section class="col-md-10">
+<section class="col-md-8">
     <article class="row well" ng-repeat="ad in ads">
-        <div class="col-md-3">
-            <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
-        </div>
-        <div class="col-md-6">
-            <div class="row well well-sm">
-                <div>{{ad.text}}</div>
+        <div class="row">
+            <div class="col-md-9">
+                <h3 class="ad-title">{{ad.title}}</h3>
             </div>
-            <div class="row">
-                <div class="col-md-3 v-center">Category: </div>
-                <div class="col-md-9 well well-sm">{{ad.categoryName}}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 v-center">Town: </div>
-                <div class="col-md-9 well well-sm">{{ad.townName}}</div>
+            <div class="col-md-3">
+                <p class="text-right">{{ad.date | date:'dd-MMM-yyyy'}}</p>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="row">
-                <div class="col-md-4 v-center">Status: </div>
-                <div class="col-md-8 well well-sm">{{ad.status}}</div>
+        <div class="row">
+            <div class="col-md-3">
+                <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
             </div>
-            <div class="row" ng-hide="adIsInactive(ad)">
-                <div class="col-md-8 col-md-offset-4">
-                    <button class="btn btn-primary btn-block" ng-click="deactivateAd(ad)">Deactivate</button>
+            <div class="col-md-6">
+                <div class="row well well-sm">
+                    <div class="ad-text">{{ad.text}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 v-center">Category: </div>
+                    <div class="col-md-8 well well-sm">{{ad.categoryName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 v-center">Town: </div>
+                    <div class="col-md-8 well well-sm">{{ad.townName}}</div>
                 </div>
             </div>
-            <div class="row" ng-show="adIsInactive(ad)">
-                <div class="col-md-8 col-md-offset-4 form-group">
-                    <button class="btn btn-primary btn-block">Edit</button>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1 text-center">Status: </div>
                 </div>
-            </div>
-            <div class="row" ng-show="adIsInactive(ad)">
-                <div class="col-md-8 col-md-offset-4 form-group">
-                    <button class="btn btn-primary btn-block">Publish Again</button>
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1 well well-sm text-center">{{ad.status}}</div>
                 </div>
-            </div>
-            <div class="row" ng-show="adIsInactive(ad)">
-                <div class="col-md-8 col-md-offset-4">
-                    <button class="btn btn-primary btn-block">Delete</button>
+                <div class="row" ng-if="!adIsInactive(ad)">
+                    <div class="col-md-11 col-md-offset-1">
+                        <button class="btn btn-primary btn-block" ng-click="deactivateAd(ad)">Deactivate</button>
+                    </div>
+                </div>
+                <div class="row" ng-if="adIsInactive(ad)">
+                    <div class="col-md-11 col-md-offset-1 form-group">
+                        <button class="btn btn-primary btn-block">Edit</button>
+                    </div>
+                </div>
+                <div class="row" ng-if="adIsInactive(ad)">
+                    <div class="col-md-11 col-md-offset-1 form-group">
+                        <button class="btn btn-primary btn-block">Publish Again</button>
+                    </div>
+                </div>
+                <div class="row" ng-if="adIsInactive(ad)">
+                    <div class="col-md-11 col-md-offset-1">
+                        <button class="btn btn-primary btn-block">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,3 +59,15 @@
         <div pagination class="pagination" ng-model="selectedPage" ng-change="loadAds()" total-items="totalAds" items-per-page=4 max-size=5 boundary-links="true"></div>
     </div>
 </section>
+
+<aside class="col-md-2">
+    <div class="well">
+        <h3>My Ads</h3>
+        <ul class="list-unstyled">
+            <li><a href ng-click="statusChanged('')" ng-class="{selectedItem: selectedStatus === ''}">All</a></li>
+            <li><a href ng-click="statusChanged(2)" ng-class="{selectedItem: selectedStatus === 2}">Published</a></li>
+            <li><a href ng-click="statusChanged(1)" ng-class="{selectedItem: selectedStatus === 1}">Waiting Approval</a></li>
+            <li><a href ng-click="statusChanged(0)" ng-class="{selectedItem: selectedStatus === 0}">Inactive</a></li>
+        </ul>
+    </div>
+</aside>

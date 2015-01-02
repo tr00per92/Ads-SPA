@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <header class="row">
-        <h1 class="h2 well well-sm text-center" ng-bind="title + (currentUser.username ? ' (' + currentUser.username + ')' : '')"></h1>
+        <h1 class="h2 well well-sm text-center" ng-bind="title + (currentUser ? ' (' + currentUser.username + ')' : '')"></h1>
     </header>
     <main class="row well">
         <aside class="col-md-2" ads-sidebar></aside>
