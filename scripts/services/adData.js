@@ -4,7 +4,7 @@ define(['app', 'services/alerts'], function (app) {
 
         function getAds(startPage, townId, categoryId) {
             var deferred = $q.defer();
-            $http.get(backendUrl + 'ads?pagesize=4&startpage=' + startPage + '&townid=' + townId + '&categoryid=' + categoryId)
+            $http.get(backendUrl + 'ads?pagesize=5&startpage=' + startPage + '&townid=' + townId + '&categoryid=' + categoryId)
                 .success(function (data) {
                     deferred.resolve(data);
                 })
