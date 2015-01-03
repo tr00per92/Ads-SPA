@@ -1,4 +1,4 @@
-define(['angularAMD', 'angular', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
+define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
     var app = angular
         .module('ads', ['ngRoute', 'ui.bootstrap'])
         .constant('backendUrl', 'http://localhost:1337/api/')
