@@ -1,8 +1,16 @@
-<form class="col-md-6 col-md-offset-2 well" id="new-ad-form">
+<form class="col-md-7 col-lg-6 col-lg-offset-2 col-md-offset-1 well" id="new-ad-form">
     <h3 class="text-center" ng-if="!editAd">Publish New Ad</h3>
     <h3 class="text-center" ng-if="editAd">Edit Ad</h3>
     <div class="form-group row">
-        <div class="col-md-8">
+        <div class="col-sm-4 col-sm-push-8 text-center">
+            <img ng-src="img/default-image.jpg" real-src="{{currentAd.imageDataUrl}}" alt="no image" class="form-group img-responsive img-rounded"/>
+            <label class="btn btn-primary btn-block" for="img-selector">
+                <input type="file" id="img-selector" class="form-control" file-select="onFileSelect($files)" ng-model="currentAd.imageDataUrl">
+                Browse
+            </label>
+            <button class="btn btn-default btn-block" ng-click="removeImage()">Remove Image</button>
+        </div>
+        <div class="col-sm-8 col-sm-pull-4">
             <div class="form-group row">
                 <div class="col-md-3">
                     <label for="title" class="v-center">Title: </label>
@@ -40,7 +48,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-md-5 col-md-offset-3">
+                <div class="col-md-5 col-md-offset-3 form-group">
                     <button type="button" class="btn btn-primary btn-block" ng-if="!editAd" ng-click="publishAd()">Publish</button>
                     <button type="button" class="btn btn-primary btn-block" ng-if="editAd" ng-click="editAd()">Edit</button>
                 </div>
@@ -49,14 +57,6 @@
                     <button type="button" class="btn btn-default btn-block" ng-if="editAd" ng-click="resetForm()">Reset</button>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <img ng-src="img/default-image.jpg" real-src="{{currentAd.imageDataUrl}}" alt="no image" class="form-group img-responsive img-rounded"/>
-            <label class="btn btn-primary btn-block" for="img-selector">
-                <input type="file" id="img-selector" class="form-control" file-select="onFileSelect($files)" ng-model="currentAd.imageDataUrl">
-                Browse
-            </label>
-            <button class="btn btn-default btn-block" ng-click="removeImage()">Remove Image</button>
         </div>
     </div>
 </form>

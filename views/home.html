@@ -1,4 +1,4 @@
-<section class="col-md-8">
+<section class="col-lg-8 col-md-6">
     <article class="row well" ng-repeat="ad in ads">
         <div class="row">
             <div class="col-md-9">
@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 form-group">
                 <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
             </div>
             <div class="col-md-9">
@@ -35,8 +35,8 @@
         <div pagination class="pagination" ng-model="selectedPage" ng-change="loadAds()" total-items="totalAds" items-per-page=4 max-size=5 boundary-links="true"></div>
     </div>
 </section>
-<aside class="col-md-2">
-    <div class="well">
+<aside class="col-lg-2 col-md-3">
+    <div class="well col-sm-5 col-md-12">
         <h3>Categories</h3>
         <ul class="list-unstyled">
             <li><a href ng-click="categoryChanged('')" ng-class="{selectedItem: !selectedCategory}">All</a></li>
@@ -45,7 +45,7 @@
             </li>
         </ul>
     </div>
-    <div class="well">
+    <div class="well col-sm-5 col-sm-offset-2 col-md-12 col-md-offset-0">
         <h3>Towns</h3>
         <ul class="list-unstyled">
             <li><a href ng-click="townChanged('')" ng-class="{selectedItem: !selectedTown}">All</a></li>

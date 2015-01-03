@@ -1,4 +1,4 @@
-<form class="col-md-4 col-md-offset-1 well" id="edit-profile-form">
+<form class="col-md-4 col-lg-offset-1 well" id="edit-profile-form">
     <h3 class="text-center">Edit Profile</h3>
     <div class="form-group">
         <label for="name">Name: </label>
@@ -19,10 +19,10 @@
         </select>
     </div>
     <div class="form-group row">
-        <div class="col-md-6">
+        <div class="col-md-7 col-lg-6 form-group">
             <button type="button" class="btn btn-primary btn-block" ng-click="updateUser()">Update</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5 col-lg-6 ">
             <button type="button" class="btn btn-default btn-block" ng-click="resetUserData()">Reset</button>
         </div>
     </div>
@@ -42,10 +42,10 @@
         <input type="password" class="form-control" id="pass-new2" placeholder="Confirm new password" ng-model="password.confirmPassword">
     </div>
     <div class="form-group row">
-        <div class="col-md-6">
+        <div class="col-md-7 col-lg-6 form-group">
             <button type="button" class="btn btn-primary btn-block" confirm-click="changePassword()" confirm-message="Are you sure you want to change your password?">Change Password</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5 col-lg-6">
             <button type="button" class="btn btn-default btn-block" ng-click="password = undefined">Clear</button>
         </div>
     </div>
