@@ -35,23 +35,4 @@
         <div pagination class="pagination" ng-model="selectedPage" ng-change="loadAds()" total-items="totalAds" items-per-page=4 max-size=5 boundary-links="true"></div>
     </div>
 </section>
-<aside class="col-lg-2 col-md-3">
-    <div class="well col-sm-5 col-md-12">
-        <h3>Categories</h3>
-        <ul class="list-unstyled">
-            <li><a href ng-click="categoryChanged('')" ng-class="{selectedItem: !selectedCategory}">All</a></li>
-            <li ng-repeat="category in categories">
-                <a href ng-click="categoryChanged(category.id)" ng-class="{selectedItem: selectedCategory === category.id}" >{{category.name}}</a>
-            </li>
-        </ul>
-    </div>
-    <div class="well col-sm-5 col-sm-offset-2 col-md-12 col-md-offset-0">
-        <h3>Towns</h3>
-        <ul class="list-unstyled">
-            <li><a href ng-click="townChanged('')" ng-class="{selectedItem: !selectedTown}">All</a></li>
-            <li ng-repeat="town in towns">
-                <a href ng-click="townChanged(town.id)" ng-class="{selectedItem: selectedTown === town.id}">{{town.name}}</a>
-            </li>
-        </ul>
-    </div>
-</aside>
+<aside class="col-lg-2 col-md-3" ng-include="'views/towns-categories-sidebar.html'"></aside>

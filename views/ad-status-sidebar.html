@@ -1,0 +1,10 @@
+<div class="well">
+    <h3>Ad Status</h3>
+    <ul class="list-unstyled">
+        <li><a href ng-click="statusChanged('')" ng-class="{selectedItem: selectedStatus === ''}">All</a></li>
+        <li><a href ng-click="statusChanged(2)" ng-class="{selectedItem: selectedStatus === 2}">Published</a></li>
+        <li><a href ng-click="statusChanged(1)" ng-class="{selectedItem: selectedStatus === 1}">Waiting Approval</a></li>
+        <li><a href ng-click="statusChanged(0)" ng-class="{selectedItem: selectedStatus === 0}">Inactive</a></li>
+        <li><a href ng-click="statusChanged(4)" ng-class="{selectedItem: selectedStatus === 4}">Rejected</a></li>
+    </ul>
+</div>

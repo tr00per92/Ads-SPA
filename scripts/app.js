@@ -55,15 +55,25 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                     controllerUrl: 'controllers/EditAdCtrl',
                     title: 'Edit Ad'
                 }))
+                .when('/admin/home', angularAMD.route({
+                    templateUrl: 'views/admin-home.html',
+                    controller: 'AdminHomeCtrl',
+                    controllerUrl: 'controllers/AdminHomeCtrl',
+                    title: 'Administration Home',
+                    admin: true
+                }))
                 .otherwise({ redirectTo: '/' });
         })
         .run(function ($rootScope, $location, userData) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
-                if (next.$$route && next.$$route.originalPath && !next.$$route.public && !$rootScope.currentUser) {
-                    $location.path('/');
-                } else {
-                    $rootScope.title = 'Ads - ' + next.$$route.title;
+                if (next.$$route && next.$$route.originalPath && !next.$$route.public) {
+                    if (!$rootScope.currentUser || (next.$$route.admin && !$rootScope.currentUser.isAdmin)) {
+                        $location.path('/');
+                    }
                 }
+            });
+            $rootScope.$on('$routeChangeSuccess', function (event, next) {
+                $rootScope.title = 'Ads - ' + next.$$route.title;
             });
         });
 

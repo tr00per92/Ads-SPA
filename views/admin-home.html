@@ -1,0 +1,67 @@
+<section class="col-lg-8 col-md-6">
+    <article class="row well" ng-repeat="ad in ads">
+        <div class="row">
+            <div class="col-md-9">
+                <h3 class="ad-title">{{ad.title}}</h3>
+            </div>
+            <div class="col-md-3">
+                <p class="text-right">{{ad.date | date:'dd-MMM-yyyy'}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
+            </div>
+            <div class="col-md-9">
+                <div class="row well well-sm">
+                    <div class="ad-text">{{ad.text}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 v-center">User: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerUsername}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 v-center">Name: </div>
+                    <div class="col-md-10 well well-sm">{{ad.ownerName}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-2 v-center">Email: </div>
+                <div class="col-md-4 well well-sm">{{ad.ownerEmail}}</div>
+                <div class="col-md-2 v-center">Phone: </div>
+                <div class="col-md-4 well well-sm">{{ad.ownerPhone}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 v-center">Category: </div>
+            <div class="col-md-4 well well-sm">{{ad.categoryName}}</div>
+            <div class="col-md-2 v-center">Town: </div>
+            <div class="col-md-4 well well-sm">{{ad.townName}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 v-center">Status: </div>
+            <div class="col-md-4 well well-sm">{{ad.status}}</div>
+            <div class="col-md-3 form-group">
+                <button class="btn btn-block btn-primary">Edit</button>
+            </div>
+            <div class="col-md-3 form-group">
+                <button class="btn btn-block btn-default">Delete</button>
+            </div>
+        </div>
+        <div class="row" ng-if="ad.status=='WaitingApproval'">
+            <div class="col-md-3 col-md-offset-6 form-group">
+                <button class="btn btn-block btn-primary">Approve</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-block btn-default">Reject</button>
+            </div>
+        </div>
+    </article>
+    <div class="row text-center">
+        <div pagination class="pagination" ng-model="selectedPage" ng-change="loadAds()" total-items="totalAds" items-per-page=5 max-size=5 boundary-links="true"></div>
+    </div>
+</section>
+<aside class="col-lg-2 col-md-3" >
+    <span ng-include="'views/ad-status-sidebar.html'"></span>
+    <span ng-include="'views/towns-categories-sidebar.html'"></span>
+</aside>

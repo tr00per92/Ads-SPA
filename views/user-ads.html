@@ -59,14 +59,4 @@
         <div pagination class="pagination" ng-model="selectedPage" ng-change="loadAds()" total-items="totalAds" items-per-page=4 max-size=5 boundary-links="true"></div>
     </div>
 </section>
-<aside class="col-md-2">
-    <div class="well">
-        <h3>My Ads</h3>
-        <ul class="list-unstyled">
-            <li><a href ng-click="statusChanged('')" ng-class="{selectedItem: selectedStatus === ''}">All</a></li>
-            <li><a href ng-click="statusChanged(2)" ng-class="{selectedItem: selectedStatus === 2}">Published</a></li>
-            <li><a href ng-click="statusChanged(1)" ng-class="{selectedItem: selectedStatus === 1}">Waiting Approval</a></li>
-            <li><a href ng-click="statusChanged(0)" ng-class="{selectedItem: selectedStatus === 0}">Inactive</a></li>
-        </ul>
-    </div>
-</aside>
+<aside class="col-md-2" ng-include="'views/ad-status-sidebar.html'"></aside>

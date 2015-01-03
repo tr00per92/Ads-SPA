@@ -28,6 +28,7 @@ define(['app', 'services/alerts'], function (app) {
                     getUserProfile(data.access_token).then(function (userData) {
                         userData.username = data.username;
                         userData.accessToken = data.access_token;
+                        userData.isAdmin = data.isAdmin;
                         $rootScope.currentUser = userData;
                         sessionStorage['currentUser'] = JSON.stringify(userData);
                         alerts.add('success', type == 'login' ? 'Login successful.' : 'Registration successful.');
