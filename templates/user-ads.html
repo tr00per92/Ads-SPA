@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 form-group">
-                <img ng-src="img/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
+                <img ng-src="images/default-image.jpg" real-src="{{ad.imageDataUrl}}" alt="no image" class="img-responsive img-rounded"/>
             </div>
             <div class="col-md-6">
                 <div class="row well well-sm">
@@ -59,4 +59,4 @@
         <div pagination class="pagination" ng-model="selectedPage" ng-change="loadAds()" total-items="totalAds" items-per-page=4 max-size=7 boundary-links="true"></div>
     </div>
 </section>
-<aside class="col-md-2" ng-include="'views/ad-status-sidebar.html'"></aside>
+<aside class="col-md-2" ng-include="'templates/sidebars/ad-status-sidebar.html'"></aside>

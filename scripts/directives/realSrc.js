@@ -5,7 +5,7 @@ define(['app'], function (app) {
             link: function (scope, element, attributes) {
                 attributes.$observe('realSrc', function (newValue) {
                     if (newValue === '') {
-                        element.attr('src', 'img/default-image.jpg');
+                        element.attr('src', 'images/default-image.jpg');
                     } else if (newValue !== undefined) {
                         var img = new Image();
                         img.src = attributes.realSrc;

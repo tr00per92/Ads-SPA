@@ -6,11 +6,11 @@ define(['app'], function (app) {
             link: function (scope) {
                 scope.getAsideUrl = function () {
                     if (!$rootScope.currentUser) {
-                        return 'views/guest-nav.html';
+                        return 'templates/sidebars/guest-nav.html';
                     } else if ($rootScope.currentUser.isAdmin) {
-                        return 'views/admin-nav.html';
+                        return 'templates/sidebars/admin-nav.html';
                     } else {
-                        return 'views/user-nav.html';
+                        return 'templates/sidebars/user-nav.html';
                     }
                 };
             },

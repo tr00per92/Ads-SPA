@@ -3,7 +3,7 @@
     <h3 class="text-center" ng-if="editAd">Edit Ad</h3>
     <div class="form-group row">
         <div class="col-sm-4 col-sm-push-8 text-center">
-            <img ng-src="img/default-image.jpg" real-src="{{currentAd.imageDataUrl}}" alt="no image" class="form-group img-responsive img-rounded"/>
+            <img ng-src="images/default-image.jpg" real-src="{{currentAd.imageDataUrl}}" alt="no image" class="form-group img-responsive img-rounded"/>
             <label class="btn btn-primary btn-block" for="img-selector">
                 <input type="file" id="img-selector" class="form-control" file-select="onFileSelect($files)" ng-model="currentAd.imageDataUrl">
                 Browse

@@ -5,21 +5,21 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', angularAMD.route({
-                    templateUrl: 'views/home.html',
+                    templateUrl: 'templates/home.html',
                     controller: 'HomeCtrl',
                     controllerUrl: 'controllers/HomeCtrl',
                     title: 'Home',
                     public: true
                 }))
                 .when('/register', angularAMD.route({
-                    templateUrl: 'views/register.html',
+                    templateUrl: 'templates/register.html',
                     controller: 'RegisterCtrl',
                     controllerUrl: 'controllers/RegisterCtrl',
                     title: 'Registration',
                     public: true
                 }))
                 .when('/login', angularAMD.route({
-                    templateUrl: 'views/login.html',
+                    templateUrl: 'templates/login.html',
                     controller: 'LoginCtrl',
                     controllerUrl: 'controllers/LoginCtrl',
                     title: 'Login',
@@ -32,31 +32,31 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                     }
                 }))
                 .when('/user/profile', angularAMD.route({
-                    templateUrl: 'views/user-profile.html',
+                    templateUrl: 'templates/user-profile.html',
                     controller: 'UserProfileCtrl',
                     controllerUrl: 'controllers/UserProfileCtrl',
                     title: 'Edit User Profile'
                 }))
                 .when('/user/ads', angularAMD.route({
-                    templateUrl: 'views/user-ads.html',
+                    templateUrl: 'templates/user-ads.html',
                     controller: 'UserAdsCtrl',
                     controllerUrl: 'controllers/UserAdsCtrl',
                     title: 'My Ads'
                 }))
                 .when('/user/ads/publish', angularAMD.route({
-                    templateUrl: 'views/ad-form.html',
+                    templateUrl: 'templates/ad-form.html',
                     controller: 'NewAdCtrl',
                     controllerUrl: 'controllers/NewAdCtrl',
                     title: 'Publish New Ad'
                 }))
                 .when('/user/ads/edit/:id', angularAMD.route({
-                    templateUrl: 'views/ad-form.html',
+                    templateUrl: 'templates/ad-form.html',
                     controller: 'EditAdCtrl',
                     controllerUrl: 'controllers/EditAdCtrl',
                     title: 'Edit Ad'
                 }))
                 .when('/admin/home', angularAMD.route({
-                    templateUrl: 'views/admin-home.html',
+                    templateUrl: 'templates/admin-home.html',
                     controller: 'AdminHomeCtrl',
                     controllerUrl: 'controllers/AdminHomeCtrl',
                     title: 'Administration Home',
