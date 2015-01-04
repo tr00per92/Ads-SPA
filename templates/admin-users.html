@@ -1,0 +1,25 @@
+<section class="col-md-offset-1 col-md-7">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td><a href>Edit</a>&nbsp;&nbsp;<a href>Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row text-center">
+        <div pagination class="pagination" ng-model="selectedPage" ng-change="loadUsers()" total-items="totalUsers" items-per-page=10 max-size=7 boundary-links="true"></div>
+    </div>
+</section>

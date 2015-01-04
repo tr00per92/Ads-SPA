@@ -5,7 +5,7 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', angularAMD.route({
-                    templateUrl: 'templates/home.html',
+                    templateUrl: 'templates/admin-home.html',
                     controller: 'HomeCtrl',
                     controllerUrl: 'controllers/HomeCtrl',
                     title: 'Home',
@@ -44,36 +44,43 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                     title: 'My Ads'
                 }))
                 .when('/user/ads/publish', angularAMD.route({
-                    templateUrl: 'templates/ad-form.html',
+                    templateUrl: 'templates/advertisement-form.html',
                     controller: 'NewAdCtrl',
                     controllerUrl: 'controllers/NewAdCtrl',
                     title: 'Publish New Ad'
                 }))
                 .when('/user/ads/edit/:id', angularAMD.route({
-                    templateUrl: 'templates/ad-form.html',
+                    templateUrl: 'templates/advertisement-form.html',
                     controller: 'EditAdCtrl',
                     controllerUrl: 'controllers/EditAdCtrl',
                     title: 'Edit Ad'
                 }))
                 .when('/admin/home', angularAMD.route({
-                    templateUrl: 'templates/admin/home.html',
+                    templateUrl: 'templates/admin-home.html',
                     controller: 'AdminHomeCtrl',
                     controllerUrl: 'controllers/AdminHomeCtrl',
                     title: 'Home',
                     admin: true
                 }))
                 .when('/admin/categories', angularAMD.route({
-                    templateUrl: 'templates/admin/categories-towns.html',
+                    templateUrl: 'templates/admin-towns-categories.html',
                     controller: 'AdminCategoriesCtrl',
                     controllerUrl: 'controllers/AdminCategoriesCtrl',
                     title: 'Categories',
                     admin: true
                 }))
                 .when('/admin/towns', angularAMD.route({
-                    templateUrl: 'templates/admin/categories-towns.html',
+                    templateUrl: 'templates/admin-towns-categories.html',
                     controller: 'AdminTownsCtrl',
                     controllerUrl: 'controllers/AdminTownsCtrl',
                     title: 'Towns',
+                    admin: true
+                }))
+                .when('/admin/users', angularAMD.route({
+                    templateUrl: 'templates/admin-users.html',
+                    controller: 'AdminUsersCtrl',
+                    controllerUrl: 'controllers/AdminUsersCtrl',
+                    title: 'Users',
                     admin: true
                 }))
                 .otherwise({ redirectTo: '/' });

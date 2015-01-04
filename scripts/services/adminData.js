@@ -42,7 +42,7 @@ define(['app', 'services/alerts'], function (app) {
             return deferred.promise;
         }
 
-        function getTownsOrCategories(startPage, items) {
+        function getItems(startPage, items) {
             var deferred = $q.defer();
             $http.get(baseUrl + items + '?pagesize=10&startpage=' + startPage, {
                 headers: {
@@ -70,10 +70,13 @@ define(['app', 'services/alerts'], function (app) {
                 return editAd(adId, 'reject/');
             },
             getCategories: function (startPage) {
-                return getTownsOrCategories(startPage, 'categories');
+                return getItems(startPage, 'categories');
             },
             getTowns: function (startPage) {
-                return getTownsOrCategories(startPage, 'towns');
+                return getItems(startPage, 'towns');
+            },
+            getUsers: function (startPage) {
+                return getItems(startPage, 'users');
             }
         }
     });
