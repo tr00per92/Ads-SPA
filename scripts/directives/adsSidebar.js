@@ -5,7 +5,13 @@ define(['app'], function (app) {
             replace: true,
             link: function (scope) {
                 scope.getAsideUrl = function () {
-                    return $rootScope.currentUser ? 'views/user-nav.html' : 'views/guest-nav.html';
+                    if (!$rootScope.currentUser) {
+                        return 'views/guest-nav.html';
+                    } else if ($rootScope.currentUser.isAdmin) {
+                        return 'views/admin-nav.html';
+                    } else {
+                        return 'views/user-nav.html';
+                    }
                 };
             },
             template: '<aside ng-include="getAsideUrl()"></aside>'

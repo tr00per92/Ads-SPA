@@ -14,6 +14,18 @@ define(['app', 'services/adminData', 'services/otherData', 'directives/realSrc']
         };
         $scope.loadAds();
 
+        $scope.approveAd = function (ad) {
+            adminData.approveAd(ad.id).then(function () {
+                ad.status = 'Published';
+            });
+        };
+
+        $scope.rejectAd = function (ad) {
+            adminData.rejectAd(ad.id).then(function () {
+                ad.status = 'Rejected';
+            });
+        };
+
         otherData.getCategories().then(function (data) {
             $scope.categories = data;
         });

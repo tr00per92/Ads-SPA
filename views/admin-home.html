@@ -50,10 +50,10 @@
         </div>
         <div class="row" ng-if="ad.status=='WaitingApproval'">
             <div class="col-md-3 col-md-offset-6 form-group">
-                <button class="btn btn-block btn-primary">Approve</button>
+                <button class="btn btn-block btn-primary" ng-click="approveAd(ad)">Approve</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-block btn-default">Reject</button>
+                <button class="btn btn-block btn-default" ng-click="rejectAd(ad)">Reject</button>
             </div>
         </div>
     </article>

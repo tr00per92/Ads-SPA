@@ -32,7 +32,7 @@ define(['app', 'services/alerts'], function (app) {
                         $rootScope.currentUser = userData;
                         sessionStorage['currentUser'] = JSON.stringify(userData);
                         alerts.add('success', type == 'login' ? 'Login successful.' : 'Registration successful.');
-                        deferred.resolve(data);
+                        deferred.resolve(userData);
                     });
                 })
                 .error(function (data) {
