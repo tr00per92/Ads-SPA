@@ -42,6 +42,22 @@ define(['app', 'services/alerts'], function (app) {
             return deferred.promise;
         }
 
+        function getTownsOrCategories(startPage, items) {
+            var deferred = $q.defer();
+            $http.get(baseUrl + items + '?pagesize=10&startpage=' + startPage, {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.error(data);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
         return {
             getAds: getAds,
             editAd: function (adId, adObj) {
@@ -52,6 +68,12 @@ define(['app', 'services/alerts'], function (app) {
             },
             rejectAd: function (adId) {
                 return editAd(adId, 'reject/');
+            },
+            getCategories: function (startPage) {
+                return getTownsOrCategories(startPage, 'categories');
+            },
+            getTowns: function (startPage) {
+                return getTownsOrCategories(startPage, 'towns');
             }
         }
     });

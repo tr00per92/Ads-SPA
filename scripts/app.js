@@ -56,10 +56,24 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                     title: 'Edit Ad'
                 }))
                 .when('/admin/home', angularAMD.route({
-                    templateUrl: 'templates/admin-home.html',
+                    templateUrl: 'templates/admin/home.html',
                     controller: 'AdminHomeCtrl',
                     controllerUrl: 'controllers/AdminHomeCtrl',
-                    title: 'Administration Home',
+                    title: 'Home',
+                    admin: true
+                }))
+                .when('/admin/categories', angularAMD.route({
+                    templateUrl: 'templates/admin/categories-towns.html',
+                    controller: 'AdminCategoriesCtrl',
+                    controllerUrl: 'controllers/AdminCategoriesCtrl',
+                    title: 'Categories',
+                    admin: true
+                }))
+                .when('/admin/towns', angularAMD.route({
+                    templateUrl: 'templates/admin/categories-towns.html',
+                    controller: 'AdminTownsCtrl',
+                    controllerUrl: 'controllers/AdminTownsCtrl',
+                    title: 'Towns',
                     admin: true
                 }))
                 .otherwise({ redirectTo: '/' });
@@ -73,7 +87,7 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                 }
             });
             $rootScope.$on('$routeChangeSuccess', function (event, next) {
-                $rootScope.title = 'Ads - ' + next.$$route.title;
+                $rootScope.title = (next.$$route.admin ? 'Ads Administration - ' : 'Ads - ') + next.$$route.title;
             });
         });
 
