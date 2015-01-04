@@ -1,4 +1,4 @@
-define(['app', 'services/otherData'], function (app) {
+define(['app', 'services/otherData', 'directives/autofocus'], function (app) {
     app.controller('RegisterCtrl', function ($scope, $location, userData, otherData) {
         otherData.getTowns().then(function (data) {
             $scope.towns = data;

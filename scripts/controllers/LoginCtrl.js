@@ -1,4 +1,4 @@
-define(['app'], function (app) {
+define(['app', 'directives/autofocus'], function (app) {
     app.controller('LoginCtrl', function ($scope, $location, userData) {
         $scope.login = function () {
             userData.login($scope.loginUser).then(function (data) {
