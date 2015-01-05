@@ -92,7 +92,8 @@ define(['app', 'services/alerts'], function (app) {
                     switch (action) {
                         case 'deactivate/': successMsg = 'Ad deactivated successfully.'; break;
                         case 'publishagain/': successMsg = 'Ad submitted for approval.'; break;
-                        default: successMsg = 'Advertisement edited. Don\'t forget to submit it for publishing.'; break;
+                        case '': successMsg = 'Advertisement edited. Don\'t forget to submit it for publishing.'; break;
+                        default: successMsg = 'Operation successful.'; break;
                     }
                     alerts.add('success', successMsg);
                     deferred.resolve(data);

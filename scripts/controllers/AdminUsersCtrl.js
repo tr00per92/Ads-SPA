@@ -9,5 +9,11 @@ define(['app', 'services/adminData', 'directives/confirmClick'], function (app) 
             })
         };
         $scope.loadUsers();
+
+        $scope.deleteUser = function (user) {
+            adminData.deleteUser(user.username).then(function () {
+                $scope.loadUsers();
+            });
+        };
     });
 });

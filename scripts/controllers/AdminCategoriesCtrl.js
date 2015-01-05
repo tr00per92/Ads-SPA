@@ -10,5 +10,11 @@ define(['app', 'services/adminData', 'directives/confirmClick'], function (app) 
             })
         };
         $scope.loadItems();
+
+        $scope.deleteItem = function (item) {
+            adminData.deleteCategory(item.id).then(function () {
+                $scope.loadItems();
+            });
+        };
     });
 });

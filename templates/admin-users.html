@@ -15,7 +15,10 @@
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
             <td>{{user.phoneNumber}}</td>
-            <td><a href>Edit</a>&nbsp;&nbsp;<a href>Delete</a></td>
+            <td>
+                <a href>Edit</a>&nbsp;
+                <a href confirm-click="deleteUser(user)" confirm-message="Are you sure you want to delete '{{user.username}}'?">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

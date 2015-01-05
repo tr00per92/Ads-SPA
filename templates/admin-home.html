@@ -45,7 +45,7 @@
                 <button class="btn btn-block btn-primary">Edit</button>
             </div>
             <div class="col-md-3 form-group">
-                <button class="btn btn-block btn-default">Delete</button>
+                <button class="btn btn-block btn-default" confirm-click="deleteAd(ad)" confirm-message="Are you sure you want to delete ad '{{ad.title}}'?">Delete</button>
             </div>
         </div>
         <div class="row" ng-if="ad.status=='WaitingApproval'">

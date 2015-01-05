@@ -1,4 +1,4 @@
-define(['app', 'services/adminData', 'services/otherData', 'directives/realSrc'], function (app) {
+define(['app', 'services/adminData', 'services/otherData', 'directives/realSrc', 'directives/confirmClick'], function (app) {
     app.controller('AdminHomeCtrl', function ($scope, adminData, otherData) {
         $scope.selectedTown = '';
         $scope.selectedCategory = '';
@@ -23,6 +23,12 @@ define(['app', 'services/adminData', 'services/otherData', 'directives/realSrc']
         $scope.rejectAd = function (ad) {
             adminData.rejectAd(ad.id).then(function () {
                 ad.status = 'Rejected';
+            });
+        };
+
+        $scope.deleteAd = function (ad) {
+            adminData.deleteAd(ad.id).then(function () {
+                $scope.loadAds();
             });
         };
 

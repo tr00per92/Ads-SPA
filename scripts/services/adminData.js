@@ -30,7 +30,8 @@ define(['app', 'services/alerts'], function (app) {
                     switch (action) {
                         case 'approve/': successMsg = 'Advertisement approved successfully.'; break;
                         case 'reject/': successMsg = 'Advertisement rejected successfully.'; break;
-                        default: successMsg = 'Advertisement edited successfully.'; break;
+                        case '': successMsg = 'Advertisement edited successfully.'; break;
+                        default: successMsg = 'Operation successful.'; break;
                     }
                     alerts.add('success', successMsg);
                     deferred.resolve(data);
@@ -58,6 +59,31 @@ define(['app', 'services/alerts'], function (app) {
             return deferred.promise;
         }
 
+        function deleteItem(itemId, itemType) {
+            var deferred = $q.defer();
+            $http.delete(baseUrl + itemType + itemId, {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    var successMsg;
+                    switch (itemType) {
+                        case 'ads/': successMsg = 'Advertisement deleted successfully.'; break;
+                        case 'user/': successMsg = 'User deleted successfully.'; break;
+                        case 'categories/': successMsg = 'Category deleted successfully.'; break;
+                        case 'towns/': successMsg = 'Town deleted successfully.'; break;
+                        default: successMsg = 'Operation successful.'; break;
+                    }
+                    alerts.add('success', successMsg);
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    alerts.add('danger', data.message || data.modelState[Object.keys(data.modelState)[0]][0]);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
         return {
             getAds: getAds,
             editAd: function (adId, adObj) {
@@ -77,6 +103,18 @@ define(['app', 'services/alerts'], function (app) {
             },
             getUsers: function (startPage) {
                 return getItems(startPage, 'users');
+            },
+            deleteAd: function (adId) {
+                return deleteItem(adId, 'ads/');
+            },
+            deleteUser: function (username) {
+                return deleteItem(username, 'user/');
+            },
+            deleteCategory: function (categoryId) {
+                return deleteItem(categoryId, 'categories/');
+            },
+            deleteTown: function (townId) {
+                return deleteItem(townId, 'towns/');
             }
         }
     });
