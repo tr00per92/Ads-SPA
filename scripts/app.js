@@ -5,7 +5,7 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', angularAMD.route({
-                    templateUrl: 'templates/admin-home.html',
+                    templateUrl: 'templates/home.html',
                     controller: 'HomeCtrl',
                     controllerUrl: 'controllers/HomeCtrl',
                     title: 'Home',
