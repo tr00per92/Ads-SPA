@@ -10,15 +10,14 @@
             <tr ng-repeat="item in items">
                 <td>{{item.username}}</td>
                 <td>
-                    {{newName}}
-                    <a href>Edit</a>&nbsp;
+                    <a href edit-modal="editItem" item-name="{{item.username}}" item-id="{{item.id}}">Edit</a>&nbsp;
                     <a href confirm-click="deleteItem(item)" confirm-message="Are you sure you want to delete '{{item.username}}'?">Delete</a>
                 </td>
             </tr>
         </tbody>
     </table>
     <div class="row text-center">
-        <button class="btn btn-primary">Create New {{baseItem}}</button>
+        <button class="btn btn-primary" edit-modal="createItem" new-item>Create New {{baseItem}}</button>
     </div>
     <div class="row text-center">
         <div pagination class="pagination" ng-model="selectedPage" ng-change="loadItems()" total-items="totalItems" items-per-page=10 max-size=7 boundary-links="true"></div>

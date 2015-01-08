@@ -1,4 +1,4 @@
-define(['app', 'services/adminData', 'directives/confirmClick'], function (app) {
+define(['app', 'services/adminData', 'directives/confirmClick', '../directives/editModal'], function (app) {
     app.controller('AdminCategoriesCtrl', function ($scope, adminData) {
         $scope.baseItem = 'Category';
         $scope.selectedPage = 1;
@@ -10,6 +10,18 @@ define(['app', 'services/adminData', 'directives/confirmClick'], function (app) 
             })
         };
         $scope.loadItems();
+
+        $scope.createItem = function (newName) {
+            adminData.createCategory(newName).then(function () {
+                $scope.loadItems();
+            });
+        };
+
+        $scope.editItem = function (itemId, newName) {
+            adminData.editCategory(itemId, newName).then(function () {
+                $scope.loadItems();
+            });
+        };
 
         $scope.deleteItem = function (item) {
             adminData.deleteCategory(item.id).then(function () {

@@ -21,7 +21,7 @@ define(['app', 'services/alerts'], function (app) {
 
         function editAd(adId, action, adObj) {
             var deferred = $q.defer();
-            $http.put(baseUrl + 'ads/' + action + adId, adObj, {
+            $http.put(baseUrl + 'ads/' + action + adId, JSON.stringify(adObj), {
                 headers: {
                     'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
                 }})
@@ -54,6 +54,53 @@ define(['app', 'services/alerts'], function (app) {
                 })
                 .error(function (data) {
                     console.error(data);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
+        function createItem(itemObj, itemType) {
+            var deferred = $q.defer();
+            $http.post(baseUrl + itemType, JSON.stringify(itemObj), {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    var successMsg;
+                    switch (itemType) {
+                        case 'categories/': successMsg = 'Category created successfully.'; break;
+                        case 'towns/': successMsg = 'Town created successfully.'; break;
+                        default: successMsg = 'Operation successful.'; break;
+                    }
+                    alerts.add('success', successMsg);
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    alerts.add('danger', data.message || data.modelState[Object.keys(data.modelState)[0]][0]);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
+        function editItem(itemId, itemObj, itemType) {
+            var deferred = $q.defer();
+            $http.put(baseUrl + itemType + itemId, JSON.stringify(itemObj), {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    var successMsg;
+                    switch (itemType) {
+                        case 'user/': successMsg = 'User edited successfully.'; break;
+                        case 'categories/': successMsg = 'Category edited successfully.'; break;
+                        case 'towns/': successMsg = 'Town edited successfully.'; break;
+                        default: successMsg = 'Operation successful.'; break;
+                    }
+                    alerts.add('success', successMsg);
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    alerts.add('danger', data.message || data.modelState[Object.keys(data.modelState)[0]][0]);
                     deferred.reject(data);
                 });
             return deferred.promise;
@@ -95,14 +142,29 @@ define(['app', 'services/alerts'], function (app) {
             rejectAd: function (adId) {
                 return editAd(adId, 'reject/');
             },
+            getUsers: function (startPage) {
+                return getItems(startPage, 'users');
+            },
             getCategories: function (startPage) {
                 return getItems(startPage, 'categories');
             },
             getTowns: function (startPage) {
                 return getItems(startPage, 'towns');
             },
-            getUsers: function (startPage) {
-                return getItems(startPage, 'users');
+            createCategory: function (categoryName) {
+                return createItem({ name: categoryName }, 'categories/');
+            },
+            createTown: function (townName){
+                return createItem({ name: townName }, 'towns/');
+            },
+            editUser: function (userId, userObj){
+                return editItem(userId, userObj, 'user/');
+            },
+            editCategory: function (categoryId, categoryName){
+                return editItem(categoryId, { name: categoryName }, 'categories/');
+            },
+            editTown: function (townId, townName){
+                return editItem(townId, { name: townName }, 'towns/');
             },
             deleteAd: function (adId) {
                 return deleteItem(adId, 'ads/');
