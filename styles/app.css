@@ -32,3 +32,7 @@ h1.h2 {
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+.checkbox label {
+    margin-bottom: 5px;
+}

@@ -59,6 +59,22 @@ define(['app', 'services/alerts'], function (app) {
             return deferred.promise;
         }
 
+        function getItemById(itemId, itemType) {
+            var deferred = $q.defer();
+            $http.get(baseUrl + itemType + itemId, {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.error(data);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
         function createItem(itemObj, itemType) {
             var deferred = $q.defer();
             $http.post(baseUrl + itemType, JSON.stringify(itemObj), {
@@ -133,6 +149,9 @@ define(['app', 'services/alerts'], function (app) {
 
         return {
             getAds: getAds,
+            getAdById: function (adId) {
+                return getItemById(adId, 'ads/')
+            },
             editAd: function (adId, adObj) {
                 return editAd(adId, '', adObj)
             },
@@ -144,6 +163,9 @@ define(['app', 'services/alerts'], function (app) {
             },
             getUsers: function (startPage) {
                 return getItems(startPage, 'users');
+            },
+            getUserById: function (adId) {
+                return getItemById(adId, 'users/')
             },
             getCategories: function (startPage) {
                 return getItems(startPage, 'categories');
@@ -157,8 +179,8 @@ define(['app', 'services/alerts'], function (app) {
             createTown: function (townName){
                 return createItem({ name: townName }, 'towns/');
             },
-            editUser: function (userId, userObj){
-                return editItem(userId, userObj, 'user/');
+            updateUser: function (username, userObj){
+                return editItem(username, userObj, 'user/');
             },
             editCategory: function (categoryId, categoryName){
                 return editItem(categoryId, { name: categoryName }, 'categories/');

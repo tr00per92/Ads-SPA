@@ -16,7 +16,7 @@
             <td>{{user.email}}</td>
             <td>{{user.phoneNumber}}</td>
             <td>
-                <a href>Edit</a>&nbsp;
+                <a ng-href="#/admin/users/edit/{{user.id}}">Edit</a>&nbsp;
                 <a href confirm-click="deleteUser(user)" confirm-message="Are you sure you want to delete '{{user.username}}'?">Delete</a>
             </td>
         </tr>

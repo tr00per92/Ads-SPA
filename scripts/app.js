@@ -83,6 +83,13 @@ define(['angularAMD', 'angular-route', 'ui-bootstrap'], function (angularAMD) {
                     title: 'Users',
                     admin: true
                 }))
+                .when('/admin/users/edit/:id', angularAMD.route({
+                    templateUrl: 'templates/user-profile.html',
+                    controller: 'AdminEditUserCtrl',
+                    controllerUrl: 'controllers/AdminEditUserCtrl',
+                    title: 'Edit User Profile',
+                    admin: true
+                }))
                 .otherwise({ redirectTo: '/' });
         })
         .run(function ($rootScope, $location, userData) {
