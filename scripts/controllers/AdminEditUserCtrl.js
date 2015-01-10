@@ -16,9 +16,10 @@ define(['app', 'services/adminData', 'services/otherData', 'directives/confirmCl
         };
 
         $scope.changePassword = function () {
-            //adminData.changePassword($scope.password).finally(function () {
-            //    $scope.password = undefined;
-            //});
+            $scope.password.username = $scope.user.userName;
+            adminData.changeUserPassword($scope.password).finally(function () {
+                $scope.password = undefined;
+            });
         };
 
         $scope.updateUser = function () {

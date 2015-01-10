@@ -34,7 +34,7 @@
 </form>
 <form class="col-md-4 well">
     <h3 class="text-center">Change Password</h3>
-    <div class="form-group">
+    <div class="form-group" ng-if="!currentUser.isAdmin">
         <label for="pass-old">Old password: </label>
         <input type="password" class="form-control" id="pass-old" placeholder="Old password" ng-model="password.oldPassword">
     </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="form-group row">
         <div class="col-md-7 col-lg-6 form-group">
-            <button type="submit" class="btn btn-primary btn-block" confirm-click="changePassword()" confirm-message="Are you sure you want to change your password?">Change Password</button>
+            <button type="submit" class="btn btn-primary btn-block" confirm-click="changePassword()" confirm-message="Are you sure you want to change the password?">Change Password</button>
         </div>
         <div class="col-md-5 col-lg-6">
             <button type="button" class="btn btn-default btn-block" ng-click="password = undefined">Clear</button>

@@ -19,6 +19,23 @@ define(['app', 'services/alerts'], function (app) {
             return deferred.promise;
         }
 
+        function changeUserPassword(passwordObj) {
+            var deferred = $q.defer();
+            $http.put(baseUrl + 'setpassword', JSON.stringify(passwordObj), {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.currentUser.accessToken
+                }})
+                .success(function (data) {
+                    alerts.add('success', 'Password changed successfully.');
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    alerts.add('danger', data.modelState[Object.keys(data.modelState)[0]][0]);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+
         function editAd(adId, action, adObj) {
             var deferred = $q.defer();
             $http.put(baseUrl + 'ads/' + action + adId, JSON.stringify(adObj), {
@@ -149,6 +166,7 @@ define(['app', 'services/alerts'], function (app) {
 
         return {
             getAds: getAds,
+            changeUserPassword: changeUserPassword,
             getAdById: function (adId) {
                 return getItemById(adId, 'ads/')
             },
@@ -164,8 +182,8 @@ define(['app', 'services/alerts'], function (app) {
             getUsers: function (startPage) {
                 return getItems(startPage, 'users');
             },
-            getUserById: function (adId) {
-                return getItemById(adId, 'users/')
+            getUserById: function (userId) {
+                return getItemById(userId, 'users/')
             },
             getCategories: function (startPage) {
                 return getItems(startPage, 'categories');
