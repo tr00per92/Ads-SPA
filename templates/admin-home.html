@@ -42,7 +42,7 @@
             <div class="col-md-2 v-center">Status: </div>
             <div class="col-md-4 well well-sm">{{ad.status}}</div>
             <div class="col-md-3 form-group">
-                <button class="btn btn-block btn-primary">Edit</button>
+                <a class="btn btn-block btn-primary" ng-href="#/admin/ads/edit/{{ad.id}}">Edit</a>
             </div>
             <div class="col-md-3 form-group">
                 <button class="btn btn-block btn-default" confirm-click="deleteAd(ad)" confirm-message="Are you sure you want to delete ad '{{ad.title}}'?">Delete</button>

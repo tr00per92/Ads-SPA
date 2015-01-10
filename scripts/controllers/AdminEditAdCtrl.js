@@ -1,9 +1,9 @@
-define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'directives/fileSelect'], function (app) {
-    app.controller('EditAdCtrl', function ($scope, $routeParams, adData, otherData) {
+define(['app', 'services/adminData', 'services/otherData', 'directives/realSrc', 'directives/fileSelect'], function (app) {
+    app.controller('AdminEditAdCtrl', function ($scope, $routeParams, adminData, otherData) {
         var currentAdBackup;
         $scope.editAd = true;
 
-        adData.getAdById($routeParams.id).then(function (data) {
+        adminData.getAdById($routeParams.id).then(function (data) {
             $scope.currentAd = data;
             currentAdBackup = angular.copy(data);
         });
@@ -31,7 +31,7 @@ define(['app', 'services/adData', 'services/otherData', 'directives/realSrc', 'd
                 $scope.currentAd.changeImage = true;
             }
 
-            adData.editAd($scope.currentAd.id, $scope.currentAd).then(function () {
+            adminData.editAd($scope.currentAd.id, $scope.currentAd).then(function () {
                 $scope.currentAd.changeImage = undefined;
                 currentAdBackup = angular.copy($scope.currentAd);
             });

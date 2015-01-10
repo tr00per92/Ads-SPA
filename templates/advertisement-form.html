@@ -47,6 +47,28 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group row" ng-if="currentUser.isAdmin">
+                <div class="col-md-3">
+                    <label for="username" class="v-center">User: </label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="username" placeholder="Username" ng-model="currentAd.ownerUsername">
+                </div>
+            </div>
+            <div class="form-group row" ng-if="currentUser.isAdmin">
+                <div class="col-md-3">
+                    <label for="status" class="v-center">Status: </label>
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control" id="status" ng-model="currentAd.status">
+                        <option selected value>--- Select Status ---</option>
+                        <option value="Published">Published</option>
+                        <option value="WaitingApproval">Waiting Approval</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-md-5 col-md-offset-3 form-group">
                     <button type="submit" class="btn btn-primary btn-block" ng-if="!editAd" ng-click="publishAd()">Publish</button>

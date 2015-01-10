@@ -1,4 +1,4 @@
-define(['app', 'services/adminData', 'directives/confirmClick', '../directives/editModal'], function (app) {
+define(['app', 'services/adminData', 'directives/confirmClick', 'directives/editModal'], function (app) {
     app.controller('AdminCategoriesCtrl', function ($scope, adminData) {
         $scope.baseItem = 'Category';
         $scope.selectedPage = 1;
