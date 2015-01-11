@@ -4,6 +4,7 @@ define(['app', 'services/adminData', 'services/otherData', 'directives/confirmCl
 
         adminData.getUserById($routeParams.id).then(function (data) {
             $scope.user = data;
+            $scope.password = { username: data.userName };
             currentUserBackup = angular.copy(data);
         });
 
@@ -16,9 +17,8 @@ define(['app', 'services/adminData', 'services/otherData', 'directives/confirmCl
         };
 
         $scope.changePassword = function () {
-            $scope.password.username = $scope.user.userName;
             adminData.changeUserPassword($scope.password).finally(function () {
-                $scope.password = undefined;
+                $scope.password = { username: $scope.user.userName };
             });
         };
 
